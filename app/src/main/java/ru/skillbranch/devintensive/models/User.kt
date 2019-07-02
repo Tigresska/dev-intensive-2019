@@ -15,7 +15,7 @@ data class User(
     var avatar: String?,
     var rating: Int = 0,
     var respect: Int = 0,
-    val lastVisit: Date? = null,
+    val lastVisit: Date? = Date(),
     val isOnline: Boolean = false
 
 ) {
@@ -43,36 +43,10 @@ data class User(
         fun makeUser(fullName: String?): User {
             lastId++
 
-            val (firstName, lastName) = Utils.parceFullName(fullName)
+            val (firstName, lastName) = Utils.parseFullName(fullName)
             return User(id = "$lastId", firstName = firstName, lastName = lastName)
         }
     }
 
 
-    /*               "${getIntro()}")
-       }
-
-       private fun getIntro() = """
-           tu tu ru tuuuuu !!!
-           tu tu ru tuuuuu !!!
-
-           tu tu ru tuuuuuuuuu ...
-           tu tu ru tuuuuuuuuu ...
-           ${"\n\n\n"}
-           $firstName $lastName
-
-
-       """.trimIndent()
-
-       fun printMe() = println("""
-           id: $id
-           firstName: $firstName
-           lastName: $lastName
-           avatar: $avatar
-           rating: $rating
-           respect: $respect
-           lastVisit: $lastVisit
-           isOnline: $isOnline
-
-       """.trimIndent())*/
 }

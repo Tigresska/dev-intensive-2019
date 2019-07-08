@@ -17,7 +17,50 @@ enum class TimeUnits {
     SECOND,
     MINUTE,
     HOUR,
-    DAY
+    DAY;
+
+    /*
+    Реализуй метод plural для всех перечислений TimeUnits следующего вида TimeUnits.SECOND.plural(value:Int)
+    возвращающую значение в виде строки с праильно склоненной единицой измерения
+    Пример:
+    TimeUnits.SECOND.plural(1) //1 секунду
+    TimeUnits.MINUTE.plural(4) //4 минуты
+    TimeUnits.HOUR.plural(19) //19 часов
+    TimeUnits.DAY.plural(222) //222 дня
+    */
+
+    fun plural(value: Int): String {
+        return value.toString() + " " + when {
+
+            value % 10 in 5..20 || value % 100 in (5..20)
+                    || value % 10 == 0 || value % 100 == 0 ->
+                when (this) {
+                    SECOND -> "секунд"
+                    MINUTE -> "минут"
+                    HOUR -> "часов"
+                    DAY -> "дней"
+                }
+            value % 10 == 1 || value % 100 == 1 ->
+                when (this) {
+                    SECOND -> "секунду"
+                    MINUTE -> "минуту"
+                    HOUR -> "час"
+                    DAY -> "день"
+                }
+            value % 10 in 2..4 || value % 100 in (2..4) ->
+                when (this) {
+                    SECOND -> "секунды"
+                    MINUTE -> "минуты"
+                    HOUR -> "часа"
+                    DAY -> "дня"
+                }
+            else -> " "
+
+
+        }
+
+
+    }
 }
 
 

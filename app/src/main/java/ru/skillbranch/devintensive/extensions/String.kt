@@ -41,13 +41,8 @@ fun String.truncate(len:Int = 16) :String{
 */
 
 fun String.stripHtml(): String{
-    return this.replace(Regex("<[^>]*>"), "")
-        .replace("&lt;","")
-        .replace("&gt;","")
-        .replace("&nbsp;","")
-        .replace("&quot;","")
-        .replace("&lsquo;","")
-        .replace("&rsquo;","")
-        .trim().replace(Regex(" +")," ")
+    return this.replace(Regex("(<.*?>)|(&[^ а-я]{1,4}?;)"), "") //htmlRegex
+        .replace(Regex(" {2,}")," ") //spaceRegex
 }
+
 
